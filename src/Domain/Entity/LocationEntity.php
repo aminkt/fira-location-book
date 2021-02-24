@@ -4,7 +4,6 @@ namespace Fira\Domain\Entity;
 
 class LocationEntity extends Entity
 {
-    protected int $id;
     protected string $name;
     protected float $latitude;
     protected float $longitude;
@@ -22,9 +21,10 @@ class LocationEntity extends Entity
     /**
      * @param string   $name
      */
-    public function setName(string $name): void
+    public function setName(string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -38,9 +38,10 @@ class LocationEntity extends Entity
     /**
      * @param float   $latitude
      */
-    public function setLatitude(float $latitude): void
+    public function setLatitude(float $latitude): self
     {
         $this->latitude = $latitude;
+        return $this;
     }
 
     /**
@@ -54,9 +55,10 @@ class LocationEntity extends Entity
     /**
      * @param float   $longitude
      */
-    public function setLongitude(float $longitude): void
+    public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;
+        return $this;
     }
 
     /**
@@ -70,9 +72,10 @@ class LocationEntity extends Entity
     /**
      * @param string   $category
      */
-    public function setCategory(string $category): void
+    public function setCategory(string $category): self
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
@@ -86,9 +89,10 @@ class LocationEntity extends Entity
     /**
      * @param string|null   $description
      */
-    public function setDescription(?string $description): void
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+        return $this;
     }
 
 

@@ -7,13 +7,13 @@ use http\Exception\InvalidArgumentException;
 
 class Entity
 {
-    protected int $id;
+    protected ?int $id = null;
     protected DateTimeImmutable $createdAt;
 
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

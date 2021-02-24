@@ -4,7 +4,6 @@ namespace Fira\Domain\Entity;
 
 class UserEntity extends Entity
 {
-    protected int $id;
     protected string $name;
     protected string $family;
     protected string $email;
