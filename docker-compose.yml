@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  worker:
+    build:
+      dockerfile: ./.docker/worker/Dockerfile
+      context: .
+    working_dir: /app
+    volumes:
+      - data_composer:/root/.composer
+      - .:/app
+  webserver:
+    build:
+      dockerfile: ./.docker/nginx/Dockerfile
+      context: .
+    ports:
+      - 8000:80
+    links:
+      - worker
+    volumes:
+      - ./sources/app/web:/app/sources/app/web
+
+volumes:
+  data_composer: {}

@@ -1,0 +1,46 @@
+{
+  "name": "fira/location-book",
+  "license": "All rights reserved!",
+  "description": "Application implementation of FunGo Social network.",
+  "keywords": ["Fira", "application", "api"],
+  "type": "project",
+  "support": {
+    "source": "https://gitlab.com/fira/location-book"
+  },
+  "prefer-stable" : true,
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Amin Keshavarz",
+      "email": "ak_1596@yahoo.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "require": {
+    "php": "~8.0",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "ext-openssl": "*",
+    "ext-zip": "*",
+    "slim/slim": "4.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9",
+    "symfony/var-dumper": "5.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fira\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Fira\\Test\\": "tests"
+    }
+  }
+}
