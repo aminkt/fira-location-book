@@ -5,10 +5,10 @@ namespace Fira\Test\UseCase;
 use Fira\Domain\Entity\LocationEntity;
 use Fira\Domain\Repository\LocationRepository;
 use Fira\Domain\UseCase\CreateLocationUC;
-use InvalidArgumentException;
+use Fira\Domain\UseCase\UpdateLocationUC;
 use PHPUnit\Framework\TestCase;
 
-final class CreateLocationUCTest extends TestCase
+final class UpdateLocationUCTest extends TestCase
 {
     private LocationRepository $locationRepository;
 
@@ -17,7 +17,7 @@ final class CreateLocationUCTest extends TestCase
         $this->locationRepository = new \Fira\Infrastructure\Database\InMemory\LocationRepository();
     }
 
-    public function testCreateLocation(): void
+    public function testUpdateLocation(): void
     {
         $uc = new CreateLocationUC($this->locationRepository);
         $uc
@@ -28,8 +28,12 @@ final class CreateLocationUCTest extends TestCase
             ->setLongitude(15.2134);
         $locationEntity = $uc->execute();
 
+        $uc = new UpdateLocationUC($this->locationRepository, $locationEntity);
+        $uc->setName('Ba Honar');
+        $locationEntity = $uc->execute();
+
         $this->assertNotEmpty($locationEntity);
-        $this->assertEquals('Lamiz', $locationEntity->getName());
+        $this->assertEquals('Ba Honar', $locationEntity->getName());
         $this->assertEquals('Cafe', $locationEntity->getCategory());
         $this->assertEquals('Best cafe in Tehran!', $locationEntity->getDescription());
         $this->assertEquals(13.43567, $locationEntity->getLatitude());
@@ -38,18 +42,5 @@ final class CreateLocationUCTest extends TestCase
         /** @var LocationEntity $inRepositoryEntity */
         $inRepositoryEntity = $this->locationRepository->getById($locationEntity->getId());
         $this->assertEquals($inRepositoryEntity->getName(), $locationEntity->getName());
-    }
-
-    public function testNullForLocationName(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $uc = new CreateLocationUC($this->locationRepository);
-        $uc
-            ->setName(null)
-            ->setCategory('Cafe')
-            ->setDescription('Best cafe in Tehran!')
-            ->setLatitude(13.43567)
-            ->setLongitude(15.2134);
-        $uc->execute();
     }
 }

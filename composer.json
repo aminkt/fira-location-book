@@ -27,7 +27,8 @@
     "ext-pdo": "*",
     "ext-openssl": "*",
     "ext-zip": "*",
-    "slim/slim": "4.*"
+    "slim/slim": "4.*",
+    "slim/psr7": "^1.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^9",

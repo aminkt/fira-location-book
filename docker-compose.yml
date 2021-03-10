@@ -18,7 +18,7 @@ services:
     links:
       - worker
     volumes:
-      - ./sources/app/web:/app/sources/app/web
+      - ./app/web:/app/web
 
 volumes:
   data_composer: {}
