@@ -9,7 +9,7 @@ class IndexController extends BaseController
 {
     public function indexAction(Request $request, Response $response): Response
     {
-        return $this->jsonResponse(['data' => 'Hello World!'], $response);
+        return $this->jsonResponse(['data' => 'Hello World!'], 200, $response);
     }
 
     public function docAction(Request $request, Response $response): Response
@@ -18,6 +18,6 @@ class IndexController extends BaseController
             'data' => [
                 'title' => 'Documents'
             ]
-        ], $response);
+        ], 200, $response);
     }
 }

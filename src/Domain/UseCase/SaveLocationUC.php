@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Fira\Domain\UseCase;
-
 
 use Fira\Domain\Entity\LocationEntity;
 use Fira\Domain\Repository\LocationRepository;
