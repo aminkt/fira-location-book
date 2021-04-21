@@ -2,7 +2,10 @@
 
 namespace Fira\Infrastructure\Database\Sql\Mysql;
 
+use DateTimeImmutable;
+use Fira\App\DependencyContainer;
 use Fira\Domain\Entity\Entity;
+use Fira\Domain\Entity\LocationEntity;
 use Fira\Domain\Utility\Pager;
 use Fira\Domain\Utility\Sort;
 
@@ -30,7 +33,18 @@ class LocationRepository implements \Fira\Domain\Repository\LocationRepository
 
     public function getById(int $id): Entity
     {
-        // TODO: Implement getById() method.
+        $rowData = DependencyContainer::getSqlDriver()->getRowById($id, 'locations');
+        $entity = new LocationEntity();
+        $entity
+            ->setId($rowData['id'])
+            ->setName($rowData['name'])
+            ->setCategory($rowData['category'])
+            ->setDescription($rowData['description'])
+            ->setLatitude($rowData['latitude'])
+            ->setLongitude($rowData['longitude'])
+            ->setCreatedAt(new DateTimeImmutable($rowData['created_at']));
+
+        return $entity;
     }
 
     public function getByIds(array $id): array

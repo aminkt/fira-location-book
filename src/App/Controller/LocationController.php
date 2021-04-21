@@ -2,6 +2,7 @@
 
 namespace Fira\App\Controller;
 
+use Fira\App\DependencyContainer;
 use Fira\Domain\UseCase\CreateLocationUC;
 use Fira\Infrastructure\Database\InMemory\LocationRepository;
 use InvalidArgumentException;
@@ -21,7 +22,7 @@ class LocationController extends BaseController
     public function createAction(Request $request, Response $response): Response
     {
         $input = json_decode($request->getBody()->getContents(), true);
-        $createUC = new CreateLocationUC(new LocationRepository());
+        $createUC = new CreateLocationUC(DependencyContainer::getLocationRepository());
         $createUC
             ->setName($input['name'] ?? null)
             ->setCategory($input['category'] ?? null)

@@ -3,7 +3,7 @@
 namespace Fira\Domain\Entity;
 
 use DateTimeImmutable;
-use http\Exception\InvalidArgumentException;
+use InvalidArgumentException;
 
 class Entity
 {
@@ -21,9 +21,10 @@ class Entity
     /**
      * @param int   $id
      */
-    public function setId(int $id): void
+    public function setId(int $id): self
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -37,7 +38,7 @@ class Entity
     /**
      * @param DateTimeImmutable   $createdAt
      */
-    public function setCreatedAt(DateTimeImmutable $createdAt): void
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         throw new InvalidArgumentException('You can not change created at for this entity (' . self::class . ')');
     }
