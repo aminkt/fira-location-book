@@ -61,4 +61,9 @@ class LocationRepository implements \Fira\Domain\Repository\LocationRepository
     {
         // TODO: Implement getNextid() method.
     }
+
+    public function search(array $searchParams, Pager $pager, Sort $sort): array
+    {
+        // TODO: Implement search() method.
+    }
 }

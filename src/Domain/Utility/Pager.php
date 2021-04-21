@@ -40,4 +40,14 @@ class Pager
         $this->pageSize = $pageSize;
         return $this;
     }
+
+    public function getTotalRows(): int
+    {
+
+    }
+
+    public function getTotalPages(): int
+    {
+
+    }
 }

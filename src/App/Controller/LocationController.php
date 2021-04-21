@@ -3,6 +3,7 @@
 namespace Fira\App\Controller;
 
 use Fira\App\DependencyContainer;
+use Fira\App\View\Location\LocationListView;
 use Fira\Domain\UseCase\CreateLocationUC;
 use Fira\Infrastructure\Database\InMemory\LocationRepository;
 use InvalidArgumentException;
@@ -14,9 +15,9 @@ class LocationController extends BaseController
     public function indexAction(Request $request, Response $response): Response
     {
         return $this->jsonResponse([
-            'status' => 'error',
-            'message' => 'Page not found!',
-        ], 404, $response);
+            'status' => 'ok',
+            'data' => (new LocationListView($request))->render(),
+        ], 200, $response);
     }
 
     public function createAction(Request $request, Response $response): Response
