@@ -2,13 +2,26 @@
 
 namespace Fira\App;
 
+use Fira\Domain\Entity\UserEntity;
 use Fira\Domain\Repository\LocationRepository;
+use Fira\Domain\Repository\UserRepository;
 use Fira\Infrastructure\Database\Sql\AbstractSqlDriver;
 use Fira\Infrastructure\Database\Sql\Mysql\MySqlDriver;
+use RuntimeException;
 
 final class DependencyContainer
 {
     protected static array $dependencies = [];
+
+    public static function setAuthenticatedUserEntity(UserEntity $userEntity): void
+    {
+        self::$dependencies['authenticatedUserEntity'] = $userEntity;
+    }
+
+    public static function getAuthenticatedUserEntity(): ?UserEntity
+    {
+        return self::$dependencies['authenticatedUserEntity'] ?? null;
+    }
 
     public static function getSqlDriver(): AbstractSqlDriver
     {
@@ -26,5 +39,10 @@ final class DependencyContainer
         }
 
         return self::$dependencies['locationRepo'];
+    }
+
+    public static function getUserRepository(): UserRepository
+    {
+        throw new RuntimeException('Not implemented yet!');
     }
 }

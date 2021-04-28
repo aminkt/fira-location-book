@@ -14,4 +14,9 @@ class BaseController
         $response->getBody()->write(json_encode($data));
         return $response;
     }
+
+    public function getRequestInputAsArray(Request $request): array
+    {
+        return json_decode($request->getBody()->getContents(), true);
+    }
 }

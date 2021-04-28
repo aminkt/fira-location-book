@@ -5,7 +5,6 @@ namespace Fira\App\Controller;
 use Fira\App\DependencyContainer;
 use Fira\App\View\Location\LocationListView;
 use Fira\Domain\UseCase\CreateLocationUC;
-use Fira\Infrastructure\Database\InMemory\LocationRepository;
 use InvalidArgumentException;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -14,9 +13,10 @@ class LocationController extends BaseController
 {
     public function indexAction(Request $request, Response $response): Response
     {
+        $userEntity = DependencyContainer::getAuthenticatedUserEntity();
         return $this->jsonResponse([
             'status' => 'ok',
-            'data' => (new LocationListView($request))->render(),
+            'data' => (new LocationListView($request, DependencyContainer::getLocationRepository()))->render(),
         ], 200, $response);
     }
 

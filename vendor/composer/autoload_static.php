@@ -46,6 +46,7 @@ class ComposerStaticInit7d5345ac85ba8129c0f2a4af78a386af
         ),
         'F' => 
         array (
+            'Firebase\\JWT\\' => 13,
             'Fira\\Test\\' => 10,
             'Fira\\' => 5,
             'Fig\\Http\\Message\\' => 17,
@@ -118,6 +119,10 @@ class ComposerStaticInit7d5345ac85ba8129c0f2a4af78a386af
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'Fira\\Test\\' => 
         array (

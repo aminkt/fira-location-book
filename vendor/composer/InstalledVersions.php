@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'b105a29df4592a7a15d82cdb3099d2f48aa05d50',
+    'reference' => '5a2873e6f955ff898aa5ec24f049a20b3d837559',
     'name' => 'fira/location-book',
   ),
   'versions' => 
@@ -60,7 +60,16 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'b105a29df4592a7a15d82cdb3099d2f48aa05d50',
+      'reference' => '5a2873e6f955ff898aa5ec24f049a20b3d837559',
+    ),
+    'firebase/php-jwt' => 
+    array (
+      'pretty_version' => 'v5.2.1',
+      'version' => '5.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f42c9110abe98dd6cfe9053c49bc86acc70b2d23',
     ),
     'myclabs/deep-copy' => 
     array (
