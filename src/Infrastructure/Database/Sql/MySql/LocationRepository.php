@@ -34,17 +34,7 @@ class LocationRepository implements \Fira\Domain\Repository\LocationRepository
     public function getById(int $id): Entity
     {
         $rowData = DependencyContainer::getSqlDriver()->getRowById($id, 'locations');
-        $entity = new LocationEntity();
-        $entity
-            ->setId($rowData['id'])
-            ->setName($rowData['name'])
-            ->setCategory($rowData['category'])
-            ->setDescription($rowData['description'])
-            ->setLatitude($rowData['latitude'])
-            ->setLongitude($rowData['longitude'])
-            ->setCreatedAt(new DateTimeImmutable($rowData['created_at']));
-
-        return $entity;
+        return $this->loadEntityData($rowData);
     }
 
     public function getByIds(array $id): array
@@ -64,6 +54,35 @@ class LocationRepository implements \Fira\Domain\Repository\LocationRepository
 
     public function search(array $searchParams, Pager $pager, Sort $sort): array
     {
-        // TODO: Implement search() method.
+        $name = $searchParams['name'] ?? null;
+        $where = '';
+        if ($name) {
+            $where = "name = {$name}";
+        }
+
+        $results = [];
+        $items = DependencyContainer::getSqlDriver()->select(['*'], 'location', $where);
+
+        foreach ($items as $item) {
+            // Item => entity
+            $results[] = $this->loadEntityData($item);
+        }
+
+        return $results;
+    }
+
+    private function loadEntityData(array $rowData): LocationEntity
+    {
+        $entity = new LocationEntity();
+        $entity
+            ->setId($rowData['id'])
+            ->setName($rowData['name'])
+            ->setCategory($rowData['category'])
+            ->setDescription($rowData['description'])
+            ->setLatitude($rowData['latitude'])
+            ->setLongitude($rowData['longitude'])
+            ->setCreatedAt(new DateTimeImmutable($rowData['created_at']));
+
+        return $entity;
     }
 }
