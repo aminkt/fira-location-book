@@ -55,9 +55,14 @@ class LocationRepository implements \Fira\Domain\Repository\LocationRepository
     public function search(array $searchParams, Pager $pager, Sort $sort): array
     {
         $name = $searchParams['name'] ?? null;
+        $category = $searchParams['category'] ?? null;
         $where = '';
         if ($name) {
             $where = "name = {$name}";
+        }
+
+        if ($category) {
+            $where = "category = {$category}";
         }
 
         $results = [];
